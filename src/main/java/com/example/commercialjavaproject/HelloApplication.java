@@ -3,6 +3,7 @@ package com.example.commercialjavaproject;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image; // <-- Added for the icon
 import javafx.stage.Stage;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,10 +33,13 @@ public class HelloApplication extends Application {
         // 2. Insert Admin from .env (Only runs if admin doesn't exist)
         createAdminFromEnv();
 
-        // 3. Show UI
+        // 3. Set Application Icon (Window & Taskbar)
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/commercialjavaproject/-main.png")));
+
+        // 4. Show UI
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1100, 800);
-        stage.setTitle("Commercial App");
+        stage.setTitle("NAJYGRID Enterprise - Login"); // <-- Updated Title
         stage.setScene(scene);
         stage.show();
     }

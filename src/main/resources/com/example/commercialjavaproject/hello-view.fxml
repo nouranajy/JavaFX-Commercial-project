@@ -5,31 +5,56 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextAlignment?>
 
 <HBox maxHeight="Infinity" maxWidth="Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.commercialjavaproject.HelloController">
     <children>
 
-        <!-- LEFT SECTION: Full-Bleed Image -->
+        <!-- LEFT SECTION: Full-Bleed Image with Project Mentions -->
         <StackPane HBox.hgrow="ALWAYS" minWidth="0.0" style="-fx-padding: 0;">
             <children>
                 <Region style="-fx-background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop'); -fx-background-size: cover; -fx-background-position: center center;" />
-                <StackPane style="-fx-background-color: rgba(16, 42, 67, 0.85);">
+                <StackPane style="-fx-background-color: rgba(16, 42, 67, 0.88);">
                     <children>
-                        <VBox alignment="CENTER_LEFT" spacing="15.0" maxWidth="Infinity">
+                        <!-- Top Text -->
+                        <VBox alignment="TOP_LEFT" spacing="15.0" maxWidth="Infinity" maxHeight="Infinity" StackPane.alignment="TOP_LEFT">
                             <padding>
-                                <Insets left="60.0" right="60.0" />
+                                <Insets top="60.0" left="60.0" right="60.0" />
                             </padding>
                             <children>
-                                <Label text="NEXUS ENTERPRISE" textFill="#FFFFFF">
+                                <Label text="NAJYGRID ENTERPRISE" textFill="#FFFFFF">
                                     <font><Font name="System Bold" size="38.0" /></font>
                                 </Label>
                                 <Label text="Streamline your operations. Manage your assets. Scale your business." textFill="#A0B3C6" wrapText="true" maxWidth="400.0">
                                     <font><Font size="16.0" /></font>
+                                </Label>
+                            </children>
+                        </VBox>
+
+                        <!-- Bottom University Mentions -->
+                        <VBox alignment="BOTTOM_LEFT" spacing="8.0" maxWidth="Infinity" maxHeight="Infinity" StackPane.alignment="BOTTOM_LEFT">
+                            <padding>
+                                <Insets bottom="40.0" left="60.0" right="60.0" />
+                            </padding>
+                            <children>
+                                <Label text="Faculty of Sciences - Kénitra" textFill="#FFFFFF">
+                                    <font><Font name="System Bold" size="16.0" /></font>
+                                </Label>
+                                <Label text="Ibn Tofail University" textFill="#FFFFFF">
+                                    <font><Font name="System Bold" size="16.0" /></font>
+                                </Label>
+                                <Label text="LUS Génie Logiciel : Développement Frontend et Backend | 2026/2027" textFill="#A0B3C6" wrapText="true">
+                                    <font><Font size="12.0" /></font>
+                                </Label>
+                                <Label text="Student: Noura Najy  |  Encadrant: Pr. Samir Mbarki" textFill="#A0B3C6" wrapText="true">
+                                    <font><Font size="12.0" /></font>
                                 </Label>
                             </children>
                         </VBox>
@@ -45,6 +70,14 @@
                 <!-- ================= LOGIN FORM ================= -->
                 <VBox fx:id="loginContainer" alignment="CENTER" maxWidth="380.0" spacing="20.0">
                     <children>
+
+                        <!-- Logo in Login Form -->
+                        <ImageView fitHeight="130.0" fitWidth="130.0" preserveRatio="true">
+                            <image>
+                                <Image url="@/com/example/commercialjavaproject/logo.png" />
+                            </image>
+                        </ImageView>
+
                         <VBox alignment="CENTER" spacing="8.0">
                             <children>
                                 <Label text="Sign in to your account" textFill="#102A43">
@@ -99,6 +132,14 @@
                 <!-- ================= REGISTER FORM (Hidden by default) ================= -->
                 <VBox fx:id="registerContainer" alignment="CENTER" maxWidth="380.0" spacing="15.0" visible="false">
                     <children>
+
+                        <!-- Logo in Register Form -->
+                        <ImageView fitHeight="130.0" fitWidth="130.0" preserveRatio="true">
+                            <image>
+                                <Image url="@/com/example/commercialjavaproject/logo.png" />
+                            </image>
+                        </ImageView>
+
                         <VBox alignment="CENTER" spacing="8.0">
                             <children>
                                 <Label text="Create an Account" textFill="#102A43">

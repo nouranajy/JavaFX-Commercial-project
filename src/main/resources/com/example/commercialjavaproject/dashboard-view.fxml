@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -12,12 +14,23 @@
     <children>
 
         <!-- SIDEBAR -->
-        <VBox prefWidth="250.0" spacing="20.0" style="-fx-background-color: #102A43;">
+        <VBox fx:id="sidebarContainer" prefWidth="250.0" spacing="20.0" style="-fx-background-color: #102A43;">
             <padding>
                 <Insets top="30.0" bottom="30.0" left="20.0" right="20.0" />
             </padding>
             <children>
-                <Label text="NEXUS" textFill="WHITE" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 0 0 20 0;" />
+
+                <!-- Logo and Brand Name -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-padding: 0 0 20 0;">
+                    <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" preserveRatio="true">
+                            <image>
+                                <Image url="@/com/example/commercialjavaproject/logo.png" />
+                            </image>
+                        </ImageView>
+                        <Label text="NEXUS" textFill="WHITE" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                    </children>
+                </HBox>
 
                 <Button text="Dashboard" prefHeight="40.0" prefWidth="210.0" style="-fx-background-color: #1a3c5a; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 15; -fx-background-radius: 6; -fx-cursor: hand;" />
                 <Button text="My Profile" prefHeight="40.0" prefWidth="210.0" style="-fx-background-color: transparent; -fx-text-fill: #A0B3C6; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 15; -fx-cursor: hand;" />
@@ -31,7 +44,7 @@
         </VBox>
 
         <!-- MAIN CONTENT -->
-        <VBox HBox.hgrow="ALWAYS" spacing="20.0">
+        <VBox fx:id="mainContentContainer" HBox.hgrow="ALWAYS" spacing="20.0">
             <padding>
                 <Insets top="40.0" right="40.0" bottom="40.0" left="40.0" />
             </padding>
