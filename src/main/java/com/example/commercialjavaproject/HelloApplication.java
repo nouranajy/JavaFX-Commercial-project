@@ -34,7 +34,7 @@ public class HelloApplication extends Application {
         createAdminFromEnv();
 
         // 3. Set Application Icon (Window & Taskbar)
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/commercialjavaproject/-main.png")));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/commercialjavaproject/logo-main.jfif")));
 
         // 4. Show UI
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
