@@ -13,7 +13,7 @@ CREATE TABLE roles (
                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 2. Users Table
+-- 2. Users Table (Admin, Manager, Client)
 CREATE TABLE users (
                        user_id BIGINT AUTO_INCREMENT PRIMARY KEY,
                        role_id INT NOT NULL,
@@ -28,8 +28,25 @@ CREATE TABLE users (
                        FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE RESTRICT
 );
 
--- Insert Default Roles
+-- 3. Products Table (The Core of your Vendor System)
+CREATE TABLE products (
+                          product_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    -- This links the product to the Manager (Vendor) who owns it
+                          manager_id BIGINT NOT NULL,
+                          name VARCHAR(150) NOT NULL,
+                          description TEXT,
+                          price DECIMAL(10, 2) NOT NULL,
+                          stock_quantity INT DEFAULT 0,
+                          is_active BOOLEAN DEFAULT TRUE,
+                          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                          FOREIGN KEY (manager_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+
+USE CommercialAppDB;
+
 INSERT INTO roles (role_name, description) VALUES
-                                               ('ADMIN', 'Full system access'),
-                                               ('MANAGER', 'Can manage products and view reports'),
-                                               ('CUSTOMER', 'Standard user access');
+                                               ('ADMIN', 'Owner of the system, full access'),
+                                               ('MANAGER', 'Vendor, can manage their own products'),
+                                               ('CLIENT', 'Customer, can browse and buy products');

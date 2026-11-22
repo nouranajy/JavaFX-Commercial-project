@@ -1,10 +1,188 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.commercialjavaproject.HelloController">
+<HBox maxHeight="Infinity" maxWidth="Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.commercialjavaproject.HelloController">
     <children>
-        <Label text="Commercial App is Running!" textFill="#2b2b2b" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+        <!-- LEFT SECTION: Full-Bleed Image -->
+        <StackPane HBox.hgrow="ALWAYS" minWidth="0.0" style="-fx-padding: 0;">
+            <children>
+                <Region style="-fx-background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop'); -fx-background-size: cover; -fx-background-position: center center;" />
+                <StackPane style="-fx-background-color: rgba(16, 42, 67, 0.85);">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" spacing="15.0" maxWidth="Infinity">
+                            <padding>
+                                <Insets left="60.0" right="60.0" />
+                            </padding>
+                            <children>
+                                <Label text="NEXUS ENTERPRISE" textFill="#FFFFFF">
+                                    <font><Font name="System Bold" size="38.0" /></font>
+                                </Label>
+                                <Label text="Streamline your operations. Manage your assets. Scale your business." textFill="#A0B3C6" wrapText="true" maxWidth="400.0">
+                                    <font><Font size="16.0" /></font>
+                                </Label>
+                            </children>
+                        </VBox>
+                    </children>
+                </StackPane>
+            </children>
+        </StackPane>
+
+        <!-- RIGHT SECTION: StackPane for Smooth Switching -->
+        <StackPane HBox.hgrow="ALWAYS" minWidth="0.0" style="-fx-background-color: #F8F9FA; -fx-padding: 0;">
+            <children>
+
+                <!-- ================= LOGIN FORM ================= -->
+                <VBox fx:id="loginContainer" alignment="CENTER" maxWidth="380.0" spacing="20.0">
+                    <children>
+                        <VBox alignment="CENTER" spacing="8.0">
+                            <children>
+                                <Label text="Sign in to your account" textFill="#102A43">
+                                    <font><Font name="System Bold" size="24.0" /></font>
+                                </Label>
+                                <Label text="Enter your credentials to access the dashboard." textFill="#627D98">
+                                    <font><Font size="13.0" /></font>
+                                </Label>
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="6.0">
+                            <children>
+                                <Label text="Email Address" textFill="#334E68">
+                                    <font><Font name="System Bold" size="12.0" /></font>
+                                </Label>
+                                <TextField fx:id="emailField" promptText="name@company.com" prefHeight="42.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #D9E2EC; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-font-size: 14px;" />
+                            </children>
+                        </VBox>
+
+                        <!-- Password with Show/Hide Toggle -->
+                        <VBox spacing="6.0">
+                            <children>
+                                <Label text="Password" textFill="#334E68">
+                                    <font><Font name="System Bold" size="12.0" /></font>
+                                </Label>
+                                <StackPane>
+                                    <children>
+                                        <PasswordField fx:id="passwordField" promptText="••••••••" prefHeight="42.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #D9E2EC; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10 40 10 10; -fx-font-size: 14px;" />
+                                        <TextField fx:id="passwordVisibleField" promptText="••••••••" visible="false" prefHeight="42.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #D9E2EC; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10 40 10 10; -fx-font-size: 14px;" />
+                                        <Label fx:id="toggleLoginPassBtn" onMouseClicked="#toggleLoginPassword" text="👁" style="-fx-cursor: hand; -fx-font-size: 16px;" StackPane.alignment="CENTER_RIGHT" translateX="-15" />
+                                    </children>
+                                </StackPane>
+                            </children>
+                        </VBox>
+
+                        <Button fx:id="loginButton" onAction="#handleLogin" prefHeight="46.0" prefWidth="380.0" style="-fx-background-color: #102A43; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 6; -fx-cursor: hand;" text="Sign In">
+                            <effect><javafx.scene.effect.DropShadow blurType="GAUSSIAN" radius="8" offsetX="0" offsetY="4" color="#102A43" /></effect>
+                        </Button>
+
+                        <HBox alignment="CENTER" spacing="5.0">
+                            <children>
+                                <Label text="Don't have an account?" textFill="#627D98" style="-fx-font-size: 13px;" />
+                                <Button onAction="#showRegisterForm" style="-fx-background-color: transparent; -fx-text-fill: #102A43; -fx-font-weight: bold; -fx-font-size: 13px; -fx-cursor: hand; -fx-underline: true; -fx-padding: 0;" text="Create one here" />
+                            </children>
+                        </HBox>
+
+                        <Label fx:id="errorLabel" textFill="#D32F2F" visible="false" wrapText="true" alignment="CENTER" textAlignment="CENTER" maxWidth="380.0" />
+                    </children>
+                </VBox>
+
+                <!-- ================= REGISTER FORM (Hidden by default) ================= -->
+                <VBox fx:id="registerContainer" alignment="CENTER" maxWidth="380.0" spacing="15.0" visible="false">
+                    <children>
+                        <VBox alignment="CENTER" spacing="8.0">
+                            <children>
+                                <Label text="Create an Account" textFill="#102A43">
+                                    <font><Font name="System Bold" size="24.0" /></font>
+                                </Label>
+                                <Label text="Join us to start managing your business." textFill="#627D98">
+                                    <font><Font size="13.0" /></font>
+                                </Label>
+                            </children>
+                        </VBox>
+
+                        <HBox spacing="10.0">
+                            <children>
+                                <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="First Name" textFill="#334E68">
+                                            <font><Font name="System Bold" size="12.0" /></font>
+                                        </Label>
+                                        <TextField fx:id="firstNameField" prefHeight="42.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #D9E2EC; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-font-size: 14px;" />
+                                    </children>
+                                </VBox>
+                                <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="Last Name" textFill="#334E68">
+                                            <font><Font name="System Bold" size="12.0" /></font>
+                                        </Label>
+                                        <TextField fx:id="lastNameField" prefHeight="42.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #D9E2EC; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-font-size: 14px;" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+
+                        <VBox spacing="6.0">
+                            <children>
+                                <Label text="Email Address" textFill="#334E68">
+                                    <font><Font name="System Bold" size="12.0" /></font>
+                                </Label>
+                                <TextField fx:id="regEmailField" promptText="name@company.com" prefHeight="42.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #D9E2EC; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-font-size: 14px;" />
+                            </children>
+                        </VBox>
+
+                        <!-- Register Password with Show/Hide Toggle -->
+                        <VBox spacing="6.0">
+                            <children>
+                                <Label text="Password" textFill="#334E68">
+                                    <font><Font name="System Bold" size="12.0" /></font>
+                                </Label>
+                                <StackPane>
+                                    <children>
+                                        <PasswordField fx:id="regPasswordField" promptText="••••••••" prefHeight="42.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #D9E2EC; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10 40 10 10; -fx-font-size: 14px;" />
+                                        <TextField fx:id="regPasswordVisibleField" promptText="••••••••" visible="false" prefHeight="42.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #D9E2EC; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10 40 10 10; -fx-font-size: 14px;" />
+                                        <Label fx:id="toggleRegPassBtn" onMouseClicked="#toggleRegPassword" text="👁" style="-fx-cursor: hand; -fx-font-size: 16px;" StackPane.alignment="CENTER_RIGHT" translateX="-15" />
+                                    </children>
+                                </StackPane>
+                            </children>
+                        </VBox>
+
+                        <!-- Confirm Password -->
+                        <VBox spacing="6.0">
+                            <children>
+                                <Label text="Confirm Password" textFill="#334E68">
+                                    <font><Font name="System Bold" size="12.0" /></font>
+                                </Label>
+                                <PasswordField fx:id="regConfirmPasswordField" promptText="••••••••" prefHeight="42.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #D9E2EC; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-font-size: 14px;" />
+                            </children>
+                        </VBox>
+
+                        <Button onAction="#handleRegister" prefHeight="46.0" prefWidth="380.0" style="-fx-background-color: #102A43; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 6; -fx-cursor: hand;" text="Sign Up">
+                            <effect><javafx.scene.effect.DropShadow blurType="GAUSSIAN" radius="8" offsetX="0" offsetY="4" color="#102A43" /></effect>
+                        </Button>
+
+                        <HBox alignment="CENTER" spacing="5.0">
+                            <children>
+                                <Label text="Already have an account?" textFill="#627D98" style="-fx-font-size: 13px;" />
+                                <Button onAction="#showLoginForm" style="-fx-background-color: transparent; -fx-text-fill: #102A43; -fx-font-weight: bold; -fx-font-size: 13px; -fx-cursor: hand; -fx-underline: true; -fx-padding: 0;" text="Sign in here" />
+                            </children>
+                        </HBox>
+
+                        <Label fx:id="regErrorLabel" textFill="#D32F2F" visible="false" wrapText="true" alignment="CENTER" textAlignment="CENTER" maxWidth="380.0" />
+                    </children>
+                </VBox>
+
+            </children>
+        </StackPane>
+
     </children>
-</StackPane>
+</HBox>
