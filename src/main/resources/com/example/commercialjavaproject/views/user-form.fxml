@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="25.0" style="-fx-background-color: #FFFFFF; -fx-padding: 40; -fx-background-radius: 16;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.commercialjavaproject.UserFormController">
+    <children>
+
+        <!-- Header -->
+        <VBox spacing="5.0">
+            <children>
+                <Label fx:id="formTitle" text="Create New User" textFill="#0F172A">
+                    <font><Font name="System Bold" size="24.0" /></font>
+                </Label>
+                <Label text="Fill in the details below to create a new account." textFill="#64748B" style="-fx-font-size: 13px;" />
+            </children>
+        </VBox>
+
+        <!-- Name Row -->
+        <HBox spacing="20.0">
+            <children>
+                <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="First Name" textFill="#334155" style="-fx-font-size: 13px; -fx-font-weight: bold;" />
+                        <TextField fx:id="firstNameField" prefHeight="42.0" style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 0 12 0 12;" />
+                    </children>
+                </VBox>
+                <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Last Name" textFill="#334155" style="-fx-font-size: 13px; -fx-font-weight: bold;" />
+                        <TextField fx:id="lastNameField" prefHeight="42.0" style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 0 12 0 12;" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+
+        <!-- Email & Role Row -->
+        <HBox spacing="20.0">
+            <children>
+                <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Email Address" textFill="#334155" style="-fx-font-size: 13px; -fx-font-weight: bold;" />
+                        <TextField fx:id="emailField" prefHeight="42.0" style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 0 12 0 12;" />
+                    </children>
+                </VBox>
+                <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Role" textFill="#334155" style="-fx-font-size: 13px; -fx-font-weight: bold;" />
+                        <ComboBox fx:id="roleComboBox" prefHeight="42.0" maxWidth="Infinity" style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-background-radius: 8;" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+
+        <!-- Password Generator Row -->
+        <VBox spacing="6.0">
+            <children>
+                <Label text="Password" textFill="#334155" style="-fx-font-size: 13px; -fx-font-weight: bold;" />
+                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                    <children>
+                        <TextField fx:id="passwordField" promptText="Enter password..." prefHeight="42.0" HBox.hgrow="ALWAYS" style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 0 12 0 12;" />
+                        <Button onAction="#generatePassword" text="⚙️ Generate" prefHeight="42.0" style="-fx-background-color: #E2E8F0; -fx-text-fill: #334155; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 0 15 0 15;" />
+                        <Button onAction="#copyPassword" text="📋 Copy" prefHeight="42.0" style="-fx-background-color: #E2E8F0; -fx-text-fill: #334155; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 0 15 0 15;" />
+                    </children>
+                </HBox>
+                <Label text="Tip: Leave blank to keep current password (when editing)." textFill="#94A3B8" style="-fx-font-size: 11px;" />
+            </children>
+        </VBox>
+
+        <!-- Actions -->
+        <HBox alignment="CENTER_RIGHT" spacing="15.0">
+            <children>
+                <Button onAction="#cancelForm" text="Cancel" prefHeight="42.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-text-fill: #64748B; -fx-font-weight: bold; -fx-cursor: hand;" />
+                <Button onAction="#saveUser" text="Save User" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #4F46E5; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-effect: dropshadow(three-pass-box, rgba(79,70,229,0.3), 10, 0, 0, 4);" />
+            </children>
+        </HBox>
+    </children>
+</VBox>
