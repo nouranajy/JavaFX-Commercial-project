@@ -6,12 +6,14 @@ import javafx.animation.Timeline;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -22,9 +24,7 @@ public class DashboardController {
 
     @FXML private Button menuToggleBtn;
     @FXML private VBox sidebarContainer;
-    @FXML private VBox mainContentContainer;
-
-    // Added Logo and brand labels
+    @FXML private StackPane contentArea;
     @FXML private ImageView sidebarLogo;
     @FXML private Label sidebarBrandLabel;
     @FXML private Label sidebarFooterLabel;
@@ -41,21 +41,18 @@ public class DashboardController {
 
     @FXML private Label welcomeLabel;
     @FXML private Label breadcrumbLabel;
-    @FXML private Label userNameLabel;
-    @FXML private Label userEmailLabel;
-    @FXML private Label userRoleLabel;
 
     private boolean isSidebarOpen = true;
 
     public void setUserData(String name, String email, String role) {
         headerUserNameLabel.setText(name);
         headerUserEmailLabel.setText(email);
-        userNameLabel.setText(name);
-        userEmailLabel.setText(email);
-        userRoleLabel.setText(role);
-
         welcomeLabel.setText("Welcome back, " + name + "!");
+
         applyRolePermissions(role);
+
+        // Automatically load the dashboard view when logging in
+        showDashboard();
     }
 
     private void applyRolePermissions(String role) {
@@ -80,26 +77,89 @@ public class DashboardController {
         }
     }
 
+    // ================= SECTION SWITCHING LOGIC =================
+
+    private void loadView(String fxmlFile, String breadcrumbText) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("views/" + fxmlFile));
+            Node view = loader.load();
+
+            if (!contentArea.getChildren().isEmpty()) {
+                Node oldContent = contentArea.getChildren().get(0);
+                FadeTransition fadeOut = new FadeTransition(Duration.millis(150), oldContent);
+                fadeOut.setFromValue(1.0);
+                fadeOut.setToValue(0.0);
+                fadeOut.setOnFinished(e -> {
+                    contentArea.getChildren().clear();
+                    contentArea.getChildren().add(view);
+                    fadeInView(view);
+                });
+                fadeOut.play();
+            } else {
+                contentArea.getChildren().add(view);
+                fadeInView(view);
+            }
+
+            breadcrumbLabel.setText(breadcrumbText);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void fadeInView(Node view) {
+        view.setOpacity(0.0);
+        FadeTransition fadeIn = new FadeTransition(Duration.millis(200), view);
+        fadeIn.setFromValue(0.0);
+        fadeIn.setToValue(1.0);
+        fadeIn.play();
+    }
+
+    @FXML
+    public void showDashboard() {
+        loadView("dashboard-home-view.fxml", "Home / Dashboard Overview");
+    }
+
+    @FXML
+    public void showProducts() {
+        loadView("products-view.fxml", "Home / Products Management");
+    }
+
+    @FXML
+    public void showOrders() {
+        loadView("orders-view.fxml", "Home / Orders Management");
+    }
+
+    @FXML
+    public void showUsers() {
+        loadView("users-view.fxml", "Home / User Management");
+    }
+
+    @FXML
+    public void showSettings() {
+        loadView("settings-view.fxml", "Home / Settings");
+    }
+
+    // ================= SIDEBAR & LOGOUT =================
+
     @FXML
     public void toggleSidebar() {
+        // ... (Keep the exact same toggleSidebar code as before) ...
         Timeline timeline = new Timeline();
         KeyValue kv;
 
         if (isSidebarOpen) {
             kv = new KeyValue(sidebarContainer.prefWidthProperty(), 70);
 
-            // Hide text
             sidebarBrandLabel.setVisible(false);
             sidebarBrandLabel.setManaged(false);
             sidebarFooterLabel.setVisible(false);
             sidebarFooterLabel.setManaged(false);
 
-            // Shrink Logo & Adjust padding to center hamburger and logo
             sidebarLogo.setFitWidth(25.0);
             sidebarLogo.setFitHeight(25.0);
             menuToggleBtn.setStyle("-fx-background-color: transparent; -fx-font-size: 18px; -fx-cursor: hand; -fx-text-fill: #FFFFFF; -fx-padding: 0 5 0 5;");
 
-            // Collapse buttons
             dashboardBtn.setText("📊");
             dashboardBtn.setStyle("-fx-background-color: #1A3C5A; -fx-text-fill: #FFFFFF; -fx-alignment: CENTER; -fx-padding: 0; -fx-background-radius: 8; -fx-font-size: 18px; -fx-cursor: hand;");
 
@@ -122,18 +182,15 @@ public class DashboardController {
         } else {
             kv = new KeyValue(sidebarContainer.prefWidthProperty(), 250);
 
-            // Show text
             sidebarBrandLabel.setVisible(true);
             sidebarBrandLabel.setManaged(true);
             sidebarFooterLabel.setVisible(true);
             sidebarFooterLabel.setManaged(true);
 
-            // Restore Logo & padding
             sidebarLogo.setFitWidth(38.0);
             sidebarLogo.setFitHeight(38.0);
             menuToggleBtn.setStyle("-fx-background-color: transparent; -fx-font-size: 20px; -fx-cursor: hand; -fx-text-fill: #FFFFFF; -fx-padding: 0;");
 
-            // Expand buttons
             dashboardBtn.setText("📊   Dashboard");
             dashboardBtn.setStyle("-fx-background-color: #1A3C5A; -fx-text-fill: #FFFFFF; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 15; -fx-background-radius: 8; -fx-font-weight: bold; -fx-font-size: 14px; -fx-cursor: hand;");
 
@@ -161,7 +218,8 @@ public class DashboardController {
 
     @FXML
     public void handleLogout() {
-        FadeTransition fadeOut = new FadeTransition(Duration.millis(300), mainContentContainer);
+        // ... (Keep the exact same handleLogout code as before) ...
+        FadeTransition fadeOut = new FadeTransition(Duration.millis(300), contentArea);
         fadeOut.setFromValue(1.0);
         fadeOut.setToValue(0.0);
 
