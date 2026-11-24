@@ -15,11 +15,11 @@ public class DatabaseManager {
 
         Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
-        String host = dotenv.get("DB_HOST", "127.0.0.1");
-        String port = dotenv.get("DB_PORT", "3306");
-        String user = dotenv.get("DB_USER", "root");
+        String host = dotenv.get("DB_HOST", "");
+        String port = dotenv.get("DB_PORT", "");
+        String user = dotenv.get("DB_USER", "");
         String password = dotenv.get("DB_PASSWORD", "");
-        String dbName = dotenv.get("DB_NAME", "CommercialAppDB");
+        String dbName = dotenv.get("DB_NAME", "");
 
         String jdbcUrl = "jdbc:mysql://" + host + ":" + port + "/" + dbName + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
 
